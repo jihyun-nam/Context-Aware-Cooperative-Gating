@@ -56,6 +56,24 @@ python train.py --race protoss --method caqmix --seed 0
 - `--ablation`: `alpha_none`, `binary_gate`, `delta_q_none`, `no_hard_mask`, `no_vis_input`, `shuffled_vis`
 - 10M environment steps with 8 collector and 8 evaluator environments. Logs and checkpoints are written to `smac2_<race>_<method>_seed<seed>/`.
 
+## Trained weights
+
+`checkpoints/smacv2/` has the CA-QMIX weights from the SMACv2 runs in the paper: 3 races × 5 seeds, saved at the end of training (10M environment steps). Each `<race>/seed<N>/` folder holds the DI-engine checkpoint `iteration_<iter>.pth.tar` (network, target network, optimizer state and step counters) and the config it was trained with (`total_config.py`). Checksums are in `SHA256SUMS`. The SMAC (pymarl) runs did not save weights.
+
+```python
+import torch
+from dizoo.smac2.config import get_config
+from ding.config import compile_config
+from ding.policy import create_policy
+
+main_config, create_config = get_config(race='protoss', method='caqmix', cuda=False)
+cfg = compile_config(main_config, create_cfg=create_config, auto=True, save_cfg=False)
+policy = create_policy(cfg.policy, enable_field=['eval'])
+policy.eval_mode.load_state_dict(torch.load('checkpoints/smacv2/protoss/seed0/iteration_87700.pth.tar', map_location='cpu'))
+```
+
+The paper reports the mean win rate over the evaluations in the last 10% of training, so evaluating a single checkpoint gives a close but not identical number.
+
 ## Citation
 
 ```bibtex

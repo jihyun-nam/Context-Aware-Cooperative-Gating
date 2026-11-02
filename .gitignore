@@ -8,6 +8,7 @@ dist/
 pymarl/results/
 smac2_*/
 *.pth.tar
+!checkpoints/**/*.pth.tar
 
 .vscode/
 .idea/
