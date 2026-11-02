@@ -1,6 +1,6 @@
 # CA-QMIX
 
-Code for **CA-QMIX** from *Context-Aware Cooperative Gating for Knowledge-Controlled Value Factorization in Multi-Agent Reinforcement Learning*, Seungwoo Jang and Ji Hyun Nam (IJSEKE, to appear).
+Code for **CA-QMIX** from [*Context-Aware Cooperative Gating for Knowledge-Controlled Value Factorization in Multi-Agent Reinforcement Learning*](https://doi.org/10.1142/S0218194026500932), Seungwoo Jang and Ji Hyun Nam (IJSEKE, 2026).
 
 <p align="center">
   <img src="assets/model.png" width="100%" alt="CA-QMIX architecture">
@@ -55,6 +55,18 @@ python train.py --race protoss --method caqmix --seed 0
 - `--method`: `caqmix`, `qmix`, `vdn`, `qtran`, `qplex`, `qatten`, `collaq`
 - `--ablation`: `alpha_none`, `binary_gate`, `delta_q_none`, `no_hard_mask`, `no_vis_input`, `shuffled_vis`
 - 10M environment steps with 8 collector and 8 evaluator environments. Logs and checkpoints are written to `smac2_<race>_<method>_seed<seed>/`.
+
+## Citation
+
+```bibtex
+@article{jang2026caqmix,
+  title   = {Context-Aware Cooperative Gating for Knowledge-Controlled Value Factorization in Multi-Agent Reinforcement Learning},
+  author  = {Jang, Seungwoo and Nam, Ji Hyun},
+  journal = {International Journal of Software Engineering and Knowledge Engineering},
+  year    = {2026},
+  doi     = {10.1142/S0218194026500932}
+}
+```
 
 ## License
 
